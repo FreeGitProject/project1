@@ -1,4 +1,5 @@
 using EcommerceBackend.Application;
+using EcommerceBackend.Application.Common;
 using EcommerceBackend.Application.Validators.Users;
 using EcommerceBackend.Infrastructure;
 using EcommerceBackend.Infrastructure.Data;
@@ -6,6 +7,7 @@ using EcommerceBackend.Presentation;
 using EcommerceBackend.Presentation.Middlewares;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -17,9 +19,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Register FluentValidation
-builder.Services.AddControllers()
-    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<RegisterUserDtoValidator>());
-
+builder.Services.AddControllers();
 // 1. Configure Database
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>

@@ -30,5 +30,10 @@ namespace EcommerceBackend.Application.Common
             var messageService = new MessageService();
             return new ApiResponse<T>(false,messageService.GetMessage(messageCode), messageCode, default, errors);
         }
+        // Helper method for validation errors
+        public static ApiResponse<T> ValidationError(List<string> errors)
+        {
+            return new ApiResponse<T>(false, "One or more validation errors occurred.", "VALIDATION_ERROR", default, errors);
+        }
     }
 }
