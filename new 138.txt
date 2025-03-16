@@ -1,0 +1,6 @@
+
+create first time 
+dotnet ef migrations add InitialCreate --project EcommerceBackend.Infrastructure --startup-project EcommerceBackend.Presentation
+
+Remove the Old Migration (if applicable)
+dotnet ef migrations remove --project EcommerceBackend.Infrastructure --startup-project EcommerceBackend.Presentation
