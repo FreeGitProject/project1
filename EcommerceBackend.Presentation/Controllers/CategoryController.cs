@@ -2,11 +2,13 @@
 using EcommerceBackend.Application.Features.Categories.Commands;
 using EcommerceBackend.Application.Features.Categories.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EcommerceBackend.Presentation.Controllers
 {
+    [Authorize] // Only Admins can access these endpoints
     [ApiController]
     [Route("api/[controller]")]
     public class CategoryController : ControllerBase
@@ -41,7 +43,7 @@ namespace EcommerceBackend.Presentation.Controllers
 
             return Ok(result);
         }
-
+        [Authorize(Roles = "Admin")]
         // POST: api/category
         [HttpPost]
         public async Task<ActionResult<CategoryDto>> CreateCategory(CreateCategoryDto createCategoryDto)

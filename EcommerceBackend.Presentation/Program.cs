@@ -83,6 +83,13 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+// Add Authorization
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
+    options.AddPolicy("CustomerOnly", policy => policy.RequireRole("Customer"));
+});
+
 // 5. Build the Application
 var app = builder.Build();
 
