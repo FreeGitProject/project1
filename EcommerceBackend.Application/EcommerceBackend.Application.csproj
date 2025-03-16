@@ -24,4 +24,10 @@
     <ProjectReference Include="..\EcommerceBackend.Domain\EcommerceBackend.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Messages.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

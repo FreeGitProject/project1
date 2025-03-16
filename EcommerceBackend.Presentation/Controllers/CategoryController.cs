@@ -3,7 +3,6 @@ using EcommerceBackend.Application.Features.Categories.Commands;
 using EcommerceBackend.Application.Features.Categories.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EcommerceBackend.Presentation.Controllers

@@ -1,4 +1,5 @@
-﻿using EcommerceBackend.Application.DTOs.Users;
+﻿using EcommerceBackend.Application.Common;
+using EcommerceBackend.Application.DTOs.Users;
 using EcommerceBackend.Application.Features.Users.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -17,19 +18,19 @@ namespace EcommerceBackend.Presentation.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<UserResponseDto>> Register(RegisterUserDto registerUserDto)
+        public async Task<ActionResult<ApiResponse<UserResponseDto>>> Register(RegisterUserDto registerUserDto)
         {
             var command = new RegisterUserCommand { RegisterUserDto = registerUserDto };
             var result = await _mediator.Send(command);
-            return Ok(result);
+            return Ok(ApiResponse<UserResponseDto>.Success(result));
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<UserResponseDto>> Login(LoginUserDto loginUserDto)
+        public async Task<ActionResult<ApiResponse<UserResponseDto>>> Login(LoginUserDto loginUserDto)
         {
             var command = new LoginUserCommand { LoginUserDto = loginUserDto };
             var result = await _mediator.Send(command);
-            return Ok(result);
+            return Ok(ApiResponse<UserResponseDto>.Success(result));
         }
     }
 }
