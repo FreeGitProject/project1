@@ -1,4 +1,5 @@
-﻿using EcommerceBackend.Domain.Common;
+﻿using EcommerceBackend.Domain.Categories.Interfaces;
+using EcommerceBackend.Domain.Common;
 using EcommerceBackend.Domain.Interfaces;
 using EcommerceBackend.Infrastructure.Data.Repositories;
 using EcommerceBackend.Infrastructure.Identity;
@@ -22,7 +23,8 @@ namespace EcommerceBackend.Infrastructure
             // Register Identity Services
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IPasswordHasher, PasswordHasher>();
-
+            // Register Repositories
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
             return services;
         }
     }

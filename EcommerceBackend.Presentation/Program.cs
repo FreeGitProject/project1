@@ -2,10 +2,13 @@ using EcommerceBackend.Application;
 using EcommerceBackend.Infrastructure;
 using EcommerceBackend.Infrastructure.Data;
 using EcommerceBackend.Presentation;
+using EcommerceBackend.Presentation.Middlewares;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Npgsql;
+using System.Data;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +19,10 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString).UseSnakeCaseNamingConvention());
+
+// Register Dapper
+builder.Services.AddScoped<IDbConnection>(_ =>
+    new NpgsqlConnection(connectionString));
 
 // 2. Configure JWT Authentication
 var jwtSettings = builder.Configuration.GetSection("Jwt");
@@ -78,6 +85,10 @@ builder.Services.AddSwaggerGen(c =>
 
 // 5. Build the Application
 var app = builder.Build();
+
+
+// Add Error Handling Middleware
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
