@@ -6,9 +6,9 @@
         public int PageSize { get; set; }
         public int TotalPages { get; set; }
         public int TotalRecords { get; set; }
-        public T Data { get; set; }
+        public List<T> Data { get; set; }
 
-        public PaginatedResponse(T data, int pageNumber, int pageSize, int totalRecords)
+        public PaginatedResponse(List<T> data, int pageNumber, int pageSize, int totalRecords)
         {
             PageNumber = pageNumber;
             PageSize = pageSize;
