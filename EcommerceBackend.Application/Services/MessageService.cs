@@ -8,7 +8,7 @@ namespace EcommerceBackend.Application.Services
         public string GetMessage(string messageCode)
         {
             var culture = Thread.CurrentThread.CurrentUICulture;
-             return Messages.ResourceManager.GetString(messageCode, culture);
+             return MessagesEn.ResourceManager.GetString(messageCode, culture);
            // return "";
         }
     }

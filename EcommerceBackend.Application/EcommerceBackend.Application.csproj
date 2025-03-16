@@ -25,8 +25,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Resources\Messages.en.resx">
+    <Compile Update="Resources\MessagesEn.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MessagesEn.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\MessagesEn.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MessagesEn.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 
